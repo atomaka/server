@@ -1,0 +1,22 @@
+version: '2'
+services:
+  lcapi:
+    image: lansingcodes/lcapi
+    env_file: lcapirc
+    restart: always
+    environment:
+      LETSENCRYPT_HOST: lcapi.atomaka.com,api.lansing.codes
+      LETSENCRYPT_EMAIL: me@atomaka.com
+      VIRTUAL_HOST: lcapi.atomaka.com,api.lansing.codes
+  lubot:
+    image: lansingcodes/lubot
+    env_file: lubotrc
+    restart: always
+  slackin:
+    image: chk1/slackin
+    env_file: slackinrc
+    environment:
+      LETSENCRYPT_HOST: lcslack.atomaka.com,slack.lansing.codes
+      LETSENCRYPT_EMAIL: me@atomaka.com
+      VIRTUAL_HOST: lcslack.atomaka.com,slack.lansing.codes
+    restart: always
